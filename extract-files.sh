@@ -1,8 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
-export DEVICE=${PWD##*/}
-export BOARDCONFIGVENDOR=true
+BASE=../../../vendor/pantech/ef46l/proprietary
+rm -rf $BASE/*
 
-../common/extract-files.sh $@
+for FILE in `egrep -v '(^#|^$)' proprietary-files.txt`; do
+  DIR=`dirname $FILE`
+  if [ ! -d $BASE/$DIR ]; then
+    mkdir -p $BASE/$DIR
+  fi
+  adb pull /system/$FILE $BASE/$FILE
+done
 
-../common/setup-makefiles.sh
+./setup-makefiles.sh
