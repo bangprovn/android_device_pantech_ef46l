@@ -36,7 +36,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/pantech/common/resources.mk)
 
 # Inherit from mint device
-$(call inherit-product, device/pantech/ef46l/mint.mk)
+$(call inherit-product, device/pantech/ef46l/ef46l.mk)
 
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := full_ef46l
